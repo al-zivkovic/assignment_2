@@ -109,7 +109,7 @@ function cleanUpCreate() {
 };
 
 
-function renderCreate() {
+function renderCreate(contact) {
     let main = document.querySelectorAll('.main')
 
     let edit = document.createElement('div')
@@ -123,14 +123,51 @@ function renderCreate() {
     img.src = "./img/profile.jpg"
     img.alt = 'Profile Picture'
     dImg.appendChild(img)
-    
+
     let divForm = document.createElement('div')
     divForm.classList.add('form')
+    edit.appendChild(divForm)
 
     let form = document.createElement('form')
 
     let c1 = document.createElement('div')
     c1.classList.add('inputcontainer')
+    form.appendChild(c1)
+    let name = document.createElement(input)
+    name.type = 'text'
+    name.id = 'contactname'
+    name.name = 'contactname'
+    name.placeholder = 'Contact Name'
+    name.value = contact.name
+    c1.appendChild(name)
+    let addName = document.createElement('button')
+    addName.classList.add('extrafield')
+    addName.id = "extranamefield"
+    addName.name = 'extranamefield'
+    addName.append('+')
+    c1.appendChild(addName)
+
+    let c2 = document.createElement('div')
+    c2.classList.add('inputcontainer')
+    form.appendChild(C2)
+    let phone = document.createElement(input)
+    phone.type = 'tel'
+    phone.id = 'contactphone'
+    phone.name = 'contactphone'
+    phone.placeholder = 'Contact Phone'
+    phone.value = contact.phone
+    c2.appendChild(phone)
+    let addPhone = document.createElement('button')
+    addPhone.classList.add("extrafield");
+    addPhone.id = "extraphonefield";
+    addPhone.name = "extraphonefield";
+    addPhone.append("+");
+    c2.appendChild(addPhone);
+
+    let c3 = document.createElement('div')
+    c3.classList.add('inputcontainer')
+    form.appendChild(c3)
+
     let 
 }
 
