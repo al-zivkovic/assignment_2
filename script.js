@@ -79,6 +79,7 @@ function renderView(contact) {
     img.classList.add('profilepic')
     img.src = './img/profile.jpg'
     img.alt = 'Profile Picture'
+    info.appendChild(img)
     
     let email = document.createElement('div')
     email.classList.add('contactemail')
