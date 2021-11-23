@@ -58,36 +58,47 @@ function cleanUpView() {
 };
 cleanUpView()
 function renderView(contact) {
-    for (let i = 0; contact.lenth; i++) {
-        let main = document.querySelectorAll('.main');
-        let info = document.createElement('div');
-        info.classList.add('contactinfo')
-        main[0].appendChild(info);
-        let name = document.createElement('div')
-        name.classList.add('contactname')
-        info.appendChild(name)
-        let img = document.createElement('img')
-        img.appendChild(name)
-        var email = document.createElement('div')
-        email.classList.add('contactemail')
-        info.appendChild(email)
-        var phone = document.createElement('div')
-        phone.classList.add('contactphone')
-        info.appendChild(phone)
-        var address = document.createElement('div')
-        address.classList.add('contactaddress')
-        info.appendChild(address)
-        var buttons = document.createElement('div')
-        buttons.classList.add('buttons')
-        info.appendChild(buttons)
-        var edit = document.createElement('button')
-        edit.classList.add('button edit')
-        buttons.appendChild(edit)
-        var close = document.createElement('button')
-        close.classList.add('button close')
-        buttons.appendChild(close)
-    }
-};
+    let main = document.querySelectorAll('.main');
+
+    let info = document.createElement('div');
+    info.classList.add('contactinfo')
+
+    let name = document.createElement('div')
+    name.classList.add('contactname')
+
+    let img = document.createElement('img')
+    img.classList.add('profilepic')
+    img.src = './img/profile.jpg'
+    img.alt = 'Profile Picture'
+
+    let email = document.createElement('div')
+    email.classList.add('contactemail')
+
+    let phone = document.createElement('div')
+    phone.classList.add('contactphone')
+
+    let address = document.createElement('div')
+    address.classList.add('contactaddress')
+
+    let buttons = document.createElement('div')
+    buttons.classList.add('buttons')
+
+    let edit = document.createElement('button')
+    edit.classList.add('button edit')
+
+    let close = document.createElement('button')
+    close.classList.add('button close')
+
+    img.appendChild(name)
+    main[0].appendChild(info);
+    info.appendChild(name)
+    info.appendChild(email)
+    info.appendChild(phone)
+    info.appendChild(address)
+    info.appendChild(buttons)
+    buttons.appendChild(edit)
+    buttons.appendChild(close)
+}
 
 /*CREATE PAGE */
 function cleanUpCreate() {
@@ -99,7 +110,28 @@ function cleanUpCreate() {
 
 
 function renderCreate() {
+    let main = document.querySelectorAll('.main')
+
+    let edit = document.createElement('div')
+    edit.classList.add('contactedit')
+
+    let dImg = document.createElement('div')
+    dImg.classList.add('contactimg')
+
+    let img = document.createElement('img')
+    img.classList.add('profilepic')
+    img.src = "./img/profile.jpg"
+    img.alt = 'Profile Picture'
+    dImg.appendChild(img)
     
+    let divForm = document.createElement('div')
+    divForm.classList.add('form')
+
+    let form = document.createElement('form')
+
+    let c1 = document.createElement('div')
+    c1.classList.add('inputcontainer')
+    let 
 }
 
 renderCreate()
