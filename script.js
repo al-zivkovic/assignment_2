@@ -37,7 +37,7 @@ function createSingleIndex(contact) {
     div.appendChild(p);
     a.appendChild(div);
     a.href = 'page3.html';
-    p.appendChild(contact.name);
+    p.append(contact.name);
     div.classList.add('contact');
     main[0].appendChild(a);
 };
@@ -57,10 +57,11 @@ function renderIndex(contact) {
     };
 };
 
-document.querySelector('.nav-home').addEventListener('click', function(event) {
-    event.preventDefault();
+document.querySelector('#contactshome').addEventListener('click', function(event) {
     cleanUpIndex();
     renderIndex(contactList);
+    event.preventDefault();
+
 });
 
 /*VIEW PAGE */
@@ -124,6 +125,10 @@ function renderView(contact) {
     img.appendChild(name)
     main[0].appendChild(info);
 }
+
+document.querySelector('.close').addEventListener('click', () => {
+    onclick=window.location.href='/index.html'
+})
 
 /*CREATE PAGE */
 function cleanUpCreate() {
@@ -257,3 +262,9 @@ function renderCreate(contact) {
     edit.appendChild(dImg)
     main[0].appendChild(edit)
 }
+
+document.querySelector('#newcontact').addEventListener('click', function(event) {
+    cleanUpCreate();
+    renderCreate(contactExample);
+    event.preventDefault();
+});
