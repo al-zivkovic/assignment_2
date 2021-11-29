@@ -21,6 +21,7 @@ let contactList = [
 ];
 
 /*INDEX PAGE */
+
 function cleanUpIndex() {
     nodes = document.querySelectorAll('.contact');
     for (let i = 0; i < nodes.length; i++) {
@@ -33,10 +34,10 @@ function createSingleIndex(contact) {
     let a = document.createElement('a');
     let p = document.createElement('p');
     let div = document.createElement('div');
+    div.appendChild(p);
     a.appendChild(div);
     a.href = 'page3.html';
     p.appendChild(contact.name);
-    div.appendChild(p);
     div.classList.add('contact');
     main[0].appendChild(a);
 };
@@ -55,6 +56,12 @@ function renderIndex(contact) {
         main[0].appendChild(a);
     };
 };
+
+document.querySelector('.nav-home').addEventListener('click', function(event) {
+    event.preventDefault();
+    cleanUpIndex();
+    renderIndex(contactList);
+});
 
 /*VIEW PAGE */
 function cleanUpView() {
