@@ -59,6 +59,8 @@ function renderIndex(contact) {
 
 document.querySelector('#contactshome').addEventListener('click', function(event) {
     cleanUpIndex();
+    cleanUpCreate();
+    cleanUpView();
     renderIndex(contactList);
     event.preventDefault();
 
@@ -126,9 +128,7 @@ function renderView(contact) {
     main[0].appendChild(info);
 }
 
-document.querySelector('.close').addEventListener('click', () => {
-    onclick=window.location.href='/index.html'
-})
+
 
 /*CREATE PAGE */
 function cleanUpCreate() {
@@ -261,10 +261,25 @@ function renderCreate(contact) {
     edit.appendChild(form)
     edit.appendChild(dImg)
     main[0].appendChild(edit)
-}
+};
 
-document.querySelector('#newcontact').addEventListener('click', function(event) {
-    cleanUpCreate();
-    renderCreate(contactExample);
-    event.preventDefault();
+document.querySelector('#newcontact').addEventListener('click', function(event){
+    cleanUpCreate()
+    cleanUpView()
+    cleanUpIndex()
+    renderCreate(contactList)
+    event.preventDefault()
+});
+
+document.querySelector('.close').addEventListener('click', () => {
+    cleanUpIndex()
+    cleanUpCreate()
+    cleanUpView()
+    renderIndex(contactList)
+});
+
+document.querySelector('.cancel').addEventListener('click', function(event) {
+    cleanUpCreate()
+    renderIndex(contactList)
+    event.preventDefault()
 });
