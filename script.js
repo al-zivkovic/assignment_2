@@ -138,129 +138,69 @@ function cleanUpCreate() {
     };
 };
 
-function renderCreate(contact) {
-    let main = document.querySelectorAll('.main')
+let renderCreate = function () {
+  let main = document.querySelector('.main');
+  let template = `
+    <div class="contactedit">
+      <div class="contactimg">
+          <img src="./img/profile.jpg" class ="profilepic" alt="Profile picture">
+      </div>
+      <div class="form">
+          <form>
+              <div class="inputcontainer">
+                  <input type="text" id="contactname" name="contactname" placeholder="Contact Name">
+                  <button class="extrafield" id="extranamefield" name="extranamefield">+</button>
+              </div>
 
-    let edit = document.createElement('div')
-    edit.classList.add('contactedit')
+              <div class="inputcontainer">
+                  <input type="tel" id="contactphone" name="contactphone" placeholder="Contact Phone">
+                  <button class="extrafield" id="extraphonefield" name="extraphonefield">+</button>
+              </div>
 
-    let dImg = document.createElement('div')
-    dImg.classList.add('contactimg')
+              <div class="inputcontainer">
+                  <input type="text" id="contactaddress" name="contactaddress" placeholder="Contact Address">
+                  <button class="extrafield" id="extraaddressfield" name="extraaddressfield">+</button>
+              </div>
+              
+              <div class="inputcontainer">
+                  <input type="email" id="contactemail" name="contactemail" placeholder="Contact Email">
+                  <button class="extrafield" id="extraemailfield" name="extraemailfield">+</button>
+              </div>
 
-    let img = document.createElement('img')
-    img.classList.add('profilepic')
-    img.src = "./img/profile.jpg"
-    img.alt = 'Profile Picture'
-    dImg.appendChild(img)
+              <div class="buttons">
+                  <button type="submit" class="button save" id="savecontact" name="savecontact">Save Contact</button>
+                  <button type="reset" class="button cancel" id="cancel" name="cancel">Cancel</button>
+              </div>
+          </form>
+      </div>
+    </div>
+  `
+ main.innerHTML = template;
 
-    let divForm = document.createElement('div')
-    divForm.classList.add('form')
-    edit.appendChild(divForm)
 
-    let form = document.createElement('form')
+ document.querySelector('.save').addEventListener('click', () => {
+    let fields = {
+        name: "",
+        phone: "",
+        address: "",
+        email: ""
+    }
 
-    let c1 = document.createElement('div')
-    c1.classList.add('inputcontainer')
-    form.appendChild(c1)
+    fields.name = document.getElementsByName('contactname')[0].value;
+    fields.phone = document.querySelector('#contactphone').value;
+    fields.address = document.querySelector('#contactaddress').value;
+    fields.email = document.querySelector('#contactemail').value;
 
-    let name = document.createElement('input')
-    name.type = 'text'
-    name.id = 'contactname'
-    name.name = 'contactname'
-    name.placeholder = 'Contact Name'
-    name.value = contact.name
-    c1.appendChild(name)
-    
-    let addName = document.createElement('button')
-    addName.classList.add('extrafield')
-    addName.id = "extranamefield"
-    addName.name = 'extranamefield'
-    addName.append('+')
-    c1.appendChild(addName)
+    console.log(fields)
+});
 
-    let c2 = document.createElement('div')
-    c2.classList.add('inputcontainer')
-    form.appendChild(c2)
+ document.querySelector('.cancel').addEventListener('click', function(event) {
+    cleanUpCreate()
+    renderIndex(contactList)
+    event.preventDefault()
+});
 
-    let phone = document.createElement('input')
-    phone.type = 'tel'
-    phone.id = 'contactphone'
-    phone.name = 'contactphone'
-    phone.placeholder = 'Contact Phone'
-    phone.value = contact.phone
-    c2.appendChild(phone)
 
-    let addPhone = document.createElement('button')
-    addPhone.classList.add("extrafield");
-    addPhone.id = "extraphonefield";
-    addPhone.name = "extraphonefield";
-    addPhone.append("+");
-    c2.appendChild(addPhone);
-
-    let c3 = document.createElement('div')
-    c3.classList.add('inputcontainer')
-    form.appendChild(c3)
-
-    let address = document.createElement('input')
-    address.type = "text";
-    address.id = "contactaddress";
-    address.name = "contactaddress";
-    address.placeholder = "Contact Address";
-    address.value = contact.address;
-    c3.appendChild(address);
-
-    let addAddress = document.createElement("button");
-    addAddress.classList.add("extrafield");
-    addAddress.id = "extraaddressfield";
-    addAddress.name = "extraaddressfield";
-    addAddress.append("+");
-    c3.appendChild(addAddress);
-
-    let c4 = document.createElement('div')
-    c4.classList.add('inputcontainer')
-    form.appendChild(c4)
-
-    let email = document.createElement("input")
-    email.type = "email";
-    email.id = "contactemail";
-    email.name = "contactemail";
-    email.placeholder = "Contact Email";
-    email.value = contact.email;
-    c4.appendChild(email);
-
-    let addEmail = document.createElement("button");
-    addEmail.classList.add("extrafield");
-    addEmail.id = "extraemailfield";
-    addEmail.name = "extraemailfield";
-    addEmail.append("+");
-    c4.appendChild(addEmail);
-
-    let buttons = document.createElement('div')
-    buttons.classList.add('buttons')
-    form.appendChild(buttons)
-
-    let save = document.createElement('button')
-    save.classList.add("button");
-    save.classList.add("save");
-    save.type = "submit";
-    save.id = "savecontact";
-    save.name = "savecontact";
-    save.append("Save Contact");
-    buttons.appendChild(save);
-
-    let discard = document.createElement('button')
-    discard.type = "reset";
-    discard.classList.add("button");
-    discard.classList.add("save");
-    discard.id = "cancel";
-    discard.name = "cancel"
-    discard.value = "Close";
-    discard.append("Cancel");
-    buttons.appendChild(discard);
-
-    edit.appendChild(form)
-    edit.appendChild(dImg)
-    main[0].appendChild(edit)
 };
 
 document.querySelector('#newcontact').addEventListener('click', function(event){
@@ -278,8 +218,5 @@ document.querySelector('.close').addEventListener('click', () => {
     renderIndex(contactList)
 });
 
-document.querySelector('.cancel').addEventListener('click', function(event) {
-    cleanUpCreate()
-    renderIndex(contactList)
-    event.preventDefault()
-});
+
+
