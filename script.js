@@ -1,10 +1,3 @@
-let contactExample = {
-    name: "Shawn Kemp",
-    phone: "778-555-1234",
-    address: "101 Main St, Anytown, USA",
-    email: "subgenius@slack.example.com"
-}
-
 let contactList = [
     {
       name: "Roberta Dobbs",
@@ -20,6 +13,12 @@ let contactList = [
     },
 ];
 
+window.onload = function () {
+    if (localStorage.getItem("hasCodeRunBefore") === null) {
+        window.onload = renderIndex(contactList)
+        localStorage.setItem("hasCodeRunBefore", true);
+    }
+}
 /*INDEX PAGE */
 
 function cleanUpIndex() {
@@ -40,6 +39,21 @@ function createSingleIndex(contact) {
     p.append(contact.name);
     div.classList.add('contact');
     main[0].appendChild(a);
+
+    document.onclick = function(event) {
+
+        if (contact.name === contactList.name) {
+            cleanUpIndex();
+            cleanUpCreate();
+            cleanUpView();
+            renderView(contact);
+
+
+        };
+
+        event.preventDefault();
+    }
+
 };
 
 function renderIndex(contact) {
@@ -192,6 +206,4 @@ document.querySelector('.close').addEventListener('click', () => {
     cleanUpView()
     renderIndex(contactList)
 });
-
-
 
