@@ -74,59 +74,29 @@ function cleanUpView() {
     };
 };
 
-function renderView(contact) {
-    let main = document.querySelectorAll('.main');
-
-    let info = document.createElement('div');
-    info.classList.add('contactinfo')
-
-    let name = document.createElement('div')
-    name.classList.add('contactname')
-    info.append(contact.name)
-    info.appendChild(name)
-    
-    let img = document.createElement('img')
-    img.classList.add('profilepic')
-    img.src = './img/profile.jpg'
-    img.alt = 'Profile Picture'
-    info.appendChild(img)
-    
-    let email = document.createElement('div')
-    email.classList.add('contactemail')
-    info.append('email:', contact.email)
-    info.appendChild(email)
-    
-    let phone = document.createElement('div')
-    phone.classList.add('contactphone')
-    info.append('phone:', contact.phone)
-    info.appendChild(phone)
-    
-    let address = document.createElement('div')
-    address.classList.add('contactaddress')
-    info.append('address:', contact.address)
-    info.appendChild(address)
-    
-    let buttons = document.createElement('div')
-    buttons.classList.add('buttons')
-    info.appendChild(buttons)
-    
-    let edit = document.createElement('button')
-    edit.classList.add('button')
-    edit.classList.add('edit')
-    edit.value = 'Close'
-    edit.append('Close')
-    buttons.appendChild(edit)
-    
-    let close = document.createElement('button')
-    close.classList.add('button')
-    close.classList.add('close')
-    edit.value = 'Edit'
-    edit.append('Edit')
-    buttons.appendChild(close)
-
-    img.appendChild(name)
-    main[0].appendChild(info);
-}
+let renderView = function (contact) {
+    let main = document.querySelector('.main');
+    let template = `
+      <div class="contactinfo">
+        <div class="contactname">
+            <img src="./img/profile.jpg" class="profilepic" alt="Profile picture">
+        </div>
+        <div class="contactemail">email: x@x.com</div>
+        <div class="contactphone">cell: +1 xxx xxx-xxxx</div>
+        <div class="contactaddress">address: 123 front st, Unit #1, Dakota City</div>
+        <div class="buttons">
+            <button class="button edit" value="Edit">Edit</button>
+            <button class="button close" value="Close">Close</button>
+        </div>
+      </div>
+    `;
+    main.innerHTML = template;
+    document.querySelector('.main .contactname').prepend(document.createTextNode(contact.name));
+    document.querySelector('.main .contactemail').textContent = "email: " + contact.email;
+    document.querySelector('.main .contactphone').textContent = "phone: " + contact.phone;
+    document.querySelector('.main .contactaddress').textContent = "address: " + contact.address;
+  
+  }
 
 
 
@@ -178,7 +148,7 @@ let renderCreate = function () {
  main.innerHTML = template;
 
 
- document.querySelector('.save').addEventListener('click', () => {
+ document.querySelector('.save').addEventListener('click', function(event) {
     let fields = {
         name: "",
         phone: "",
@@ -187,11 +157,16 @@ let renderCreate = function () {
     }
 
     fields.name = document.getElementsByName('contactname')[0].value;
-    fields.phone = document.querySelector('#contactphone').value;
-    fields.address = document.querySelector('#contactaddress').value;
-    fields.email = document.querySelector('#contactemail').value;
+    fields.phone = document.getElementsByName('contactphone')[0].value;
+    fields.address = document.getElementsByName('contactaddress')[0].value;
+    fields.email = document.getElementsByName('contactemail')[0].value;
 
+
+    contactList.push(fields)
     console.log(fields)
+    cleanUpCreate()
+    renderView(contactList[2])
+    event.preventDefault()
 });
 
  document.querySelector('.cancel').addEventListener('click', function(event) {
